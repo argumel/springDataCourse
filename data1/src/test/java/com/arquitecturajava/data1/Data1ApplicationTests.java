@@ -104,11 +104,185 @@ class Data1ApplicationTests {
 	void buscarTituloTest() {
 		
 	
+		List<Libro> lista = repositorioLibro.findByTitulo("Java EE");
+		for(Libro lib : lista){
+			System.out.println(lib.getTitulo());
+		}
+		//assertThat(lista,hasItem(new Libro("3B")));
+		
+		
+	}
+	
+	@Test
+	void buscarAutorTest() {
+		
+	
 		List<Libro> lista = repositorioLibro.findByAutor("Cecilio");
+		for(Libro lib : lista){
+			System.out.println("Autor: " + lib.getAutor());
+		}
 		assertThat(lista,hasItem(new Libro("3B")));
 		
 		
 	}
 	
+	@Test
+	void buscarPorTituloAutorTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByTituloAndAutor("Java","Cecilio");
+		for(Libro lib : lista){
+			System.out.println("Titulo y Autor: " + lib.getTitulo() + " " + lib.getAutor());
+		}
+		assertThat(lista,hasItem(new Libro("1A")));
+		
+		
+	}
+	
+	@Test
+	void buscarPorTituloOrAutorTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByTituloOrAutor("Net","Cecilio");
+		for(Libro lib : lista){
+			System.out.println("Titulo or Autor: " + lib.getTitulo() + " " + lib.getAutor());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+		
+		
+	}
+	
+	@Test
+	void buscarPorPrecioTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByPrecio(50);
+		for(Libro lib : lista){
+			System.out.println("Se encontro el precio: " + lib.getPrecio());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	
+	@Test
+	void buscarPorPrecioMayorTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByPrecioGreaterThan(20);
+		for(Libro lib : lista){
+			System.out.println("Se encontro el precio Mayor: " + lib.getPrecio());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	
+	@Test
+	void buscarPorPrecioMenorTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByPrecioLessThan(20);
+		for(Libro lib : lista){
+			System.out.println("Se encontro el precio Menor: " + lib.getPrecio());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	
+	@Test
+	void buscarPorPrecioEntreTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByPrecioBetween(10,20);
+		for(Libro lib : lista){
+			System.out.println("Se encontro entre: " + lib.getPrecio());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	
+	@Test
+	void buscarPorTituloLikeTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByTituloLike("%Java%");
+		for(Libro lib : lista){
+			System.out.println("Se encontro el titulo por like: " + lib.getTitulo());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	
+	@Test
+	void buscarPorTituloContainingTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByTituloContaining("Java");
+		for(Libro lib : lista){
+			System.out.println("Se encontro el titulo por findByTituloContaining: " + lib.getTitulo());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	
+	@Test
+	void buscarPorTituloComienzaTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByTituloStartingWith("Java");
+		for(Libro lib : lista){
+			System.out.println("Se encontro el titulo por findByTituloStartWithing: " + lib.getTitulo());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	
+	@Test
+	void buscarPorTituloFinalizaTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByTituloEndingWith("Script");
+		for(Libro lib : lista){
+			System.out.println("Se encontro el titulo por findByTituloEndingWith: " + lib.getTitulo());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	@Test
+	void buscarPorTituloIsNullTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByAutorIsNull();
+		for(Libro lib : lista){
+			System.out.println("Se encontro el titulo por findByAutorisNull: " + lib.getTitulo());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	@Test
+	void buscarPorTituloNotTest() {
+		
+	
+		List<Libro> lista = repositorioLibro.findByTituloNot("Net");
+		for(Libro lib : lista){
+			System.out.println("Se encontro el titulo por findByTituloNot: " + lib.getTitulo());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
+	
+	@Test
+	void buscarPorTituloEnConjuntoTest() {
+		
+		List<String> listaTitulos = new ArrayList<String>();
+		listaTitulos.add("Java");
+		listaTitulos.add("PHP");
+		
+		List<Libro> lista = repositorioLibro.findByTituloIn(listaTitulos);
+		for(Libro lib : lista){
+			System.out.println("Se encontro el titulo por findByTituloIn: " + lib.getTitulo());
+		}
+		//assertThat(lista,hasItem(new Libro("1A")));
+			
+	}
 	
 }

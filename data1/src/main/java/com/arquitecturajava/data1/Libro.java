@@ -1,10 +1,13 @@
 package com.arquitecturajava.data1;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,6 +20,8 @@ public class Libro {
 	private String 	autor;
 	private Date	fecha;
 	private double precio;
+	@OneToMany(mappedBy="libro")
+	private List<Capitulo> capitulos = new ArrayList<Capitulo>();
 	
 	
 	
@@ -89,6 +94,14 @@ public class Libro {
 			return false;
 		Libro other = (Libro) obj;
 		return Objects.equals(isbn, other.isbn);
+	}
+
+	public List<Capitulo> getCapitulos() {
+		return capitulos;
+	}
+
+	public void setCapitulos(List<Capitulo> capitulos) {
+		this.capitulos = capitulos;
 	}
 	
 	
